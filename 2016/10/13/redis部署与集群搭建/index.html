@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="google-site-verification" content="naRxhm3UAbDuc4VvySQES6KEPLkiIapHrMvMzENeAt4" />
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>redis部署与集群搭建 | 幸福双星的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="install redis123456789官网download：url: http://redis.io/downloadredis.cn 中文网站：url：http://www.redis.cn/install redis:wget http://download.redis.io/releases/redis-3.2.0.tar.gz tar xzf redis-3.2.0.tar.gzcd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis部署与集群搭建">
+<meta property="og:url" content="https://nickliuyong.github.io/blogs/2016/10/13/redis部署与集群搭建/index.html">
+<meta property="og:site_name" content="幸福双星的博客">
+<meta property="og:description" content="install redis123456789官网download：url: http://redis.io/downloadredis.cn 中文网站：url：http://www.redis.cn/install redis:wget http://download.redis.io/releases/redis-3.2.0.tar.gz tar xzf redis-3.2.0.tar.gzcd">
+<meta property="og:updated_time" content="2016-10-18T03:17:24.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis部署与集群搭建">
+<meta name="twitter:description" content="install redis123456789官网download：url: http://redis.io/downloadredis.cn 中文网站：url：http://www.redis.cn/install redis:wget http://download.redis.io/releases/redis-3.2.0.tar.gz tar xzf redis-3.2.0.tar.gzcd">
+  
+    <link rel="alternative" href="/atom.xml" title="幸福双星的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blogs/images/favicon.ico">
+  
+  <script src="/blogs/style.js"></script>
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/blogs" class="profilepic">
+			
+			<img src="/blogs/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/blogs">幸福双星</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/blogs/">主页</a></li>
+	        
+				<li><a href="/blogs/archives">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/nickliuyong/" title="github">github</a>
+		        
+					<a class="mail" target="_blank" href="mailto:nickliuyong5@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">幸福双星</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/blogs/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">幸福双星</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/blogs/">主页</a></li>
+		        
+					<li><a href="/blogs/archives">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/nickliuyong/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:nickliuyong5@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-redis部署与集群搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      redis部署与集群搭建
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="install-redis"><a href="#install-redis" class="headerlink" title="install redis"></a>install redis</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">官网download：</div><div class="line">url: http://redis.io/download</div><div class="line">redis.cn 中文网站：</div><div class="line">url：http://www.redis.cn/</div><div class="line">install redis:</div><div class="line">wget http://download.redis.io/releases/redis-3.2.0.tar.gz </div><div class="line">tar xzf redis-3.2.0.tar.gz</div><div class="line"><span class="built_in">cd</span> redis-3.2.0</div><div class="line">make (need gcc compiler)</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="start-redis"><a href="#start-redis" class="headerlink" title="start redis"></a>start redis</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">关闭防火墙：</div><div class="line">systemctl <span class="built_in">disable</span> firewalld.service</div><div class="line">systemctl stop firewalld.service</div><div class="line">src/redis-server &amp;</div></pre></td></tr></table></figure>
+<h3 id="start-redis-with-redis-conf"><a href="#start-redis-with-redis-conf" class="headerlink" title="start redis with redis.conf"></a>start redis with redis.conf</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">./redis-server /path/to/redis.conf</div><div class="line">redis.conf 详细配置文件</div><div class="line">参考文档：http://www.tuicool.com/articles/MvMBf2</div><div class="line">http://my.oschina.net/fsmwhx/blog/152186</div></pre></td></tr></table></figure>
+<h3 id="interact-with-Redis"><a href="#interact-with-Redis" class="headerlink" title="interact with Redis"></a>interact with Redis</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">src/redis-cli</div></pre></td></tr></table></figure>
+<h3 id="create-redis-cluster"><a href="#create-redis-cluster" class="headerlink" title="create redis cluster"></a>create redis cluster</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">参考文档：</div><div class="line">http://www.cnblogs.com/yjmyzz/p/redis-cluster-turotial.html</div><div class="line">http://www.redis.io/topics/cluster-tutorial</div><div class="line">mkdir redis-cluster</div><div class="line"><span class="built_in">cd</span> redis-cluster</div><div class="line">mkdir 7000 7001 7002 7003 7004 7005</div><div class="line">将上方编译到src下的文件拷贝到以下目录</div><div class="line">cp /root/src /root/redis-cluster/7000</div><div class="line">cp /root/src /root/redis-cluster/7001</div><div class="line">cp /root/src /root/redis-cluster/7002</div><div class="line">cp /root/src /root/redis-cluster/7003</div><div class="line">cp /root/src /root/redis-cluster/7004</div><div class="line">cp /root/src /root/redis-cluster/7005</div><div class="line"><span class="built_in">cd</span> src</div><div class="line">建立集群配置文件 redis-cluster.conf</div><div class="line">vi redis-cluster.conf</div><div class="line">文件内容如下：</div><div class="line">port 7000</div><div class="line">cluster-enabled yes</div><div class="line">cluster-config-file nodes.conf</div><div class="line">cluster-node-timeout 5000</div><div class="line">appendonly yes</div><div class="line">以集群节点模式分别启动6个redis</div><div class="line"><span class="built_in">cd</span> 7000/src</div><div class="line">./redis-server ../redis-cluster.conf</div><div class="line">创建集群，由于依赖redis gem</div><div class="line">yum install ruby</div><div class="line">由于 rubygems.org 镜像 ，国内无法直接访问，需要指定镜像</div><div class="line">参考文档：https://github.com/alibaba/ruby.taobao.org/issues/66</div><div class="line">gem sources --add http://mirrors.aliyun.com/rubygems/ --remove https://rubygems.org/</div><div class="line">如果链接被重置，出现如下错误：</div><div class="line"> Errno::ECONNRESET: Connection reset by peer - SSL_connect (https://ruby.taobao.org/specs.4.8.gz)</div><div class="line"> 说明镜像地址无效</div><div class="line">gem install redis</div><div class="line">节点加入集群</div><div class="line">./redis-trib.rb create --replicas 1 127.0.0.1:7000 127.0.0.1:7001 \</div><div class="line">127.0.0.1:7002 127.0.0.1:7003 127.0.0.1:7004 127.0.0.1:7005</div></pre></td></tr></table></figure>
+<h3 id="redis数据导出与导入"><a href="#redis数据导出与导入" class="headerlink" title="redis数据导出与导入"></a>redis数据导出与导入</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">先安装ruby</div><div class="line">sudo gem install redis-dump -V   //安装redis-dump </div><div class="line">redis-dump -u :password@xxx.xxx.xxx.xxx:6379  &gt;test.json //导出数据  </div><div class="line">cat test.json | redis-load -u :rediss112fF123@114.55.228.45:6379 //导入数据</div><div class="line">注意：</div><div class="line">如果redis密码中包含＃符号会导致redis-load命令失效</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blogs/2016/10/13/redis部署与集群搭建/" class="archive-article-date">
+  	<time datetime="2016-10-13T07:40:25.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-13</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/redis/">redis</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/blogs/2016/10/17/jdbc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          jdbc的加载过程
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+
+
+
+
+<div class="share_addthis share_jia">
+  <div class="sharing addthis_toolbox share">
+  	<span class="jiathis_txt">Share to: &nbsp; </span>
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 幸福双星
+    	</div>
+		<div class="footer-right">
+			<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+			<span id="busuanzi_container_site_uv">
+  				本站访客数<span id="busuanzi_value_site_uv"></span>人次
+			</span>
+			<!--
+			<span id="busuanzi_container_site_pv">
+   			    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+			</span> -->
+		</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/blogs/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/blogs/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://fangyi.me">前端phieo</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://greenmzc.github.io">前端Green</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.excaliburhan.com/">前端小平</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://yuchuanxi.com/">前端土豆</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.icdoit.com/">没事溜啦</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.cnblogs.com">博客园</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.imooc.com">慕课网</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.tuicool.com">推酷网</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.open-open.com">深度开源</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.runoob.com">菜鸟教程</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://stackoverflow.com">stackoverflow</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">我只是一枚搬砖的程序员</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

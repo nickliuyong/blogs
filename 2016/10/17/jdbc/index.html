@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="google-site-verification" content="naRxhm3UAbDuc4VvySQES6KEPLkiIapHrMvMzENeAt4" />
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>jdbc的加载过程 | 幸福双星的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="jdbc连接mysql数据库1234567891011121314/* 获取数据库连接的函数*/public static Connection getConnection() &amp;#123;    Connection con = null;	//创建用于连接数据库的Connection对象    try &amp;#123;        Class.forName(&quot;com.mysql.jdbc.Dr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jdbc的加载过程">
+<meta property="og:url" content="https://nickliuyong.github.io/blogs/2016/10/17/jdbc/index.html">
+<meta property="og:site_name" content="幸福双星的博客">
+<meta property="og:description" content="jdbc连接mysql数据库1234567891011121314/* 获取数据库连接的函数*/public static Connection getConnection() &amp;#123;    Connection con = null;	//创建用于连接数据库的Connection对象    try &amp;#123;        Class.forName(&quot;com.mysql.jdbc.Dr">
+<meta property="og:updated_time" content="2016-10-17T05:25:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jdbc的加载过程">
+<meta name="twitter:description" content="jdbc连接mysql数据库1234567891011121314/* 获取数据库连接的函数*/public static Connection getConnection() &amp;#123;    Connection con = null;	//创建用于连接数据库的Connection对象    try &amp;#123;        Class.forName(&quot;com.mysql.jdbc.Dr">
+  
+    <link rel="alternative" href="/atom.xml" title="幸福双星的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blogs/images/favicon.ico">
+  
+  <script src="/blogs/style.js"></script>
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/blogs" class="profilepic">
+			
+			<img src="/blogs/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/blogs">幸福双星</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/blogs/">主页</a></li>
+	        
+				<li><a href="/blogs/archives">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/nickliuyong/" title="github">github</a>
+		        
+					<a class="mail" target="_blank" href="mailto:nickliuyong5@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">幸福双星</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/blogs/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">幸福双星</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/blogs/">主页</a></li>
+		        
+					<li><a href="/blogs/archives">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/nickliuyong/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:nickliuyong5@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-jdbc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      jdbc的加载过程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="jdbc连接mysql数据库"><a href="#jdbc连接mysql数据库" class="headerlink" title="jdbc连接mysql数据库"></a>jdbc连接mysql数据库</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 获取数据库连接的函数*/</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">()</span> </span>&#123;</div><div class="line">    Connection con = <span class="keyword">null</span>;	<span class="comment">//创建用于连接数据库的Connection对象</span></div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">// 加载Mysql数据驱动</span></div><div class="line">        </div><div class="line">        con = DriverManager.getConnection(</div><div class="line">                <span class="string">"jdbc:mysql://localhost:3306/myuser"</span>, <span class="string">"root"</span>, <span class="string">"root"</span>);<span class="comment">// 创建数据连接</span></div><div class="line">        </div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        System.out.println(<span class="string">"数据库连接失败"</span> + e.getMessage());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> con;	<span class="comment">//返回所建立的数据库连接</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>); <span class="comment">// 通过类加载器去实例化Driver</span></div><div class="line"><span class="comment">//Driver部分源码如下</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> CopyOnWriteArrayList&lt;DriverInfo&gt; registeredDrivers = <span class="keyword">new</span> CopyOnWriteArrayList&lt;DriverInfo&gt;();</div><div class="line"><span class="keyword">static</span> &#123;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            DriverManager.registerDriver(<span class="keyword">new</span> Driver());</div><div class="line">        &#125; <span class="keyword">catch</span> (SQLException var1) &#123;</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Can\'t register driver!"</span>);</div><div class="line">        &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">registerDriver</span><span class="params">(java.sql.Driver driver)</span></span></div><div class="line">        <span class="keyword">throws</span> SQLException &#123;</div><div class="line">        <span class="comment">/* Register the driver if it has not already been added to our list */</span></div><div class="line">        <span class="keyword">if</span>(driver != <span class="keyword">null</span>) &#123;</div><div class="line">            registeredDrivers.addIfAbsent(<span class="keyword">new</span> DriverInfo(driver));</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">// This is for compatibility with the original DriverManager</span></div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">        &#125;</div><div class="line">        println(<span class="string">"registerDriver: "</span> + driver);</div><div class="line"></div><div class="line">&#125;</div><div class="line"><span class="comment">//从上可知，加载Driver的过程，实际上就是往registeredDrivers注册了一个驱动。</span></div><div class="line">con = DriverManager.getConnection(</div><div class="line">                <span class="string">"jdbc:mysql://localhost:3306/myuser"</span>, <span class="string">"root"</span>, <span class="string">"root"</span>);<span class="comment">// 创建数据连接，其实就是去registeredDrivers找对应的驱动的过程</span></div><div class="line"><span class="comment">//部分源码如下：</span></div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">(</span></span></div><div class="line">    //TODO 省略</div><div class="line">    <span class="keyword">for</span>(DriverInfo aDriver : registeredDrivers) &#123;</div><div class="line">                <span class="comment">// If the caller does not have permission to load the driver then</span></div><div class="line">                <span class="comment">// skip it.</span></div><div class="line">                <span class="keyword">if</span>(isDriverAllowed(aDriver.driver, callerCL)) &#123;</div><div class="line">                    <span class="keyword">try</span> &#123;</div><div class="line">                        println(<span class="string">"    trying "</span> + aDriver.driver.getClass().getName());</div><div class="line">                        <span class="comment">//主要是通过url字符串匹配来获取相应的connect，具体实现可参考下方源码</span></div><div class="line">                        Connection con = aDriver.driver.connect(url, info);</div><div class="line">                        <span class="keyword">if</span> (con != <span class="keyword">null</span>) &#123;</div><div class="line">                            <span class="comment">// Success!</span></div><div class="line">                            println(<span class="string">"getConnection returning "</span> + aDriver.driver.getClass().getName());</div><div class="line">                            <span class="keyword">return</span> (con);</div><div class="line">                        &#125;</div><div class="line">                    &#125; <span class="keyword">catch</span> (SQLException ex) &#123;</div><div class="line">                        <span class="keyword">if</span> (reason == <span class="keyword">null</span>) &#123;</div><div class="line">                            reason = ex;</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    println(<span class="string">"    skipping: "</span> + aDriver.getClass().getName());</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">｝</div><div class="line"><span class="comment">//以下是postgresql的 connect 源码</span></div><div class="line"><span class="function"><span class="keyword">public</span> Connection <span class="title">connect</span><span class="params">(String url, Properties info)</span> <span class="keyword">throws</span> SQLException </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!url.startsWith(<span class="string">"jdbc:postgresql:"</span>)) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            Properties defaults;</div><div class="line">           <span class="comment">//TODO 省略</span></div><div class="line">        ｝</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>一次面试带来的技术积累<br>  一次面试带来的反思         </p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blogs/2016/10/17/jdbc/" class="archive-article-date">
+  	<time datetime="2016-10-17T02:06:26.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-17</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/jdbc/">jdbc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/面试/">面试</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/blogs/2016/10/18/java线程中sleep、wait、join/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          java线程中sleep、wait、join的理解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blogs/2016/10/13/redis部署与集群搭建/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redis部署与集群搭建</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="share_addthis share_jia">
+  <div class="sharing addthis_toolbox share">
+  	<span class="jiathis_txt">Share to: &nbsp; </span>
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 幸福双星
+    	</div>
+		<div class="footer-right">
+			<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+			<span id="busuanzi_container_site_uv">
+  				本站访客数<span id="busuanzi_value_site_uv"></span>人次
+			</span>
+			<!--
+			<span id="busuanzi_container_site_pv">
+   			    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+			</span> -->
+		</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/blogs/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/blogs/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://fangyi.me">前端phieo</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://greenmzc.github.io">前端Green</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.excaliburhan.com/">前端小平</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://yuchuanxi.com/">前端土豆</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.icdoit.com/">没事溜啦</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.cnblogs.com">博客园</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.imooc.com">慕课网</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.tuicool.com">推酷网</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.open-open.com">深度开源</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.runoob.com">菜鸟教程</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://stackoverflow.com">stackoverflow</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">我只是一枚搬砖的程序员</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
