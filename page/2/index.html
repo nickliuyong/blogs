@@ -128,6 +128,110 @@
       <div class="body-wrap">
         
   
+    <article id="post-java线程中sleep、wait、join" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/2016/10/18/java线程中sleep、wait、join/">java线程中sleep、wait、join的理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="sleep"><a href="#sleep" class="headerlink" title="sleep"></a>sleep</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Thread1</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Test test;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Thread1</span><span class="params">(Test test)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.test = test;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">synchronized</span> (test)&#123;</div><div class="line">            <span class="keyword">try</span>&#123;</div><div class="line">                System.out.println(<span class="string">"Thread1...."</span>);</div><div class="line">                System.out.println(<span class="string">"等待中"</span>);</div><div class="line">                <span class="comment">//不释放线程资源</span></div><div class="line">                Thread.sleep(<span class="number">3000</span>);</div><div class="line">                System.out.println(<span class="string">"资源释放"</span>);</div><div class="line">            &#125;<span class="keyword">catch</span> (Exception e)&#123;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/blogs/2016/10/18/java线程中sleep、wait、join/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blogs/2016/10/18/java线程中sleep、wait、join/" class="archive-article-date">
+  	<time datetime="2016-10-18T07:36:36.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-18</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/j2se/">j2se</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/多线程/">多线程</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-jdbc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/2016/10/17/jdbc/">jdbc的加载过程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="jdbc连接mysql数据库"><a href="#jdbc连接mysql数据库" class="headerlink" title="jdbc连接mysql数据库"></a>jdbc连接mysql数据库</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 获取数据库连接的函数*/</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Connection <span class="title">getConnection</span><span class="params">()</span> </span>&#123;</div><div class="line">    Connection con = <span class="keyword">null</span>;	<span class="comment">//创建用于连接数据库的Connection对象</span></div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>);<span class="comment">// 加载Mysql数据驱动</span></div><div class="line">        </div><div class="line">        con = DriverManager.getConnection(</div><div class="line">                <span class="string">"jdbc:mysql://localhost:3306/myuser"</span>, <span class="string">"root"</span>, <span class="string">"root"</span>);<span class="comment">// 创建数据连接</span></div><div class="line">        </div><div class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">        System.out.println(<span class="string">"数据库连接失败"</span> + e.getMessage());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> con;	<span class="comment">//返回所建立的数据库连接</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/blogs/2016/10/17/jdbc/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blogs/2016/10/17/jdbc/" class="archive-article-date">
+  	<time datetime="2016-10-17T02:06:26.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-17</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/jdbc/">jdbc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/面试/">面试</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-redis部署与集群搭建" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -192,7 +296,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 幸福双星
+    		&copy; 2017 幸福双星
     	</div>
 		<div class="footer-right">
 			<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -247,7 +351,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
+    				<a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
     			</div>
     	</section>
     
