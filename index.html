@@ -128,6 +128,63 @@
       <div class="body-wrap">
         
   
+    <article id="post-git-tag" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/2017/01/24/git-tag/">git tag</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="git-tag的使用"><a href="#git-tag的使用" class="headerlink" title="git tag的使用"></a>git tag的使用</h3><p>   一般来说，当我们发布一个版本时或者一个大版本时，需要打相应的tag来记录对应的版本号，以此来方便我们回归整个<br>   commit log，对于git 来说，当我们发布以release版本后，可以在master分支上通过 git tag来记录相应标签</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">建立标签： git tag <span class="_">-a</span> 0.0.1 -m <span class="string">"test git tag 0.0.1"</span></div><div class="line">推送到远程： git push origin --tags</div><div class="line">根据tag拉取代码并新建分支： git checkout -b 0.0.1-branch  0.0.1</div></pre></td></tr></table></figure>
+<h3 id="推荐"><a href="#推荐" class="headerlink" title="推荐:"></a>推荐:</h3><p>   一般来说，我们的工程都是采用maven编译的，建议每一次tag的建立和maven工程的version进行一一对应，如此可以清晰<br>   的拉取到对应的源码</p>
+<h3 id="总结如下"><a href="#总结如下" class="headerlink" title="总结如下"></a>总结如下</h3><pre><code>当一个分支合并到master时，需做如下几件事情：
+
+1. 打相应version的jar、war包
+
+2. 打对应version的tag
+</code></pre>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blogs/2017/01/24/git-tag/" class="archive-article-date">
+  	<time datetime="2017-01-24T08:22:56.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-01-24</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/git/">git</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-protocol-buffer" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -305,14 +362,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="关于mina"><a href="#关于mina" class="headerlink" title="关于mina"></a>关于mina</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">官方文档：http://mina.apache.org/mina-project/documentation.html</div><div class="line"></div><div class="line">中文文档： https://waylau.gitbooks.io/apache-mina-2-user-guide/ (vpn)</div><div class="line"></div><div class="line">          http://blog.csdn.net/defonds/article/category/1844073</div><div class="line"></div><div class="line">参考博客：http://blog.csdn.net/huwenfeng_2011/article/details/43413009</div></pre></td></tr></table></figure>
-<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p><img src="/blogs/images/mina-3.png" alt="工作原理"></p>
-<h3 id="IoBuffer"><a href="#IoBuffer" class="headerlink" title="IoBuffer"></a>IoBuffer</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">- 零拷贝策略：一旦我们从套接字中读取了数据，我们想在稍后的过程中避免再次拷贝（Mina未实现） </div><div class="line"></div><div class="line">- heap buffer 和 direct buffer 区别:</div><div class="line"></div><div class="line">      heap buffer这种缓冲区是分配在堆上面的，直接由Java虚拟机负责垃圾回收，可以直接想象成一个字节数组的包装类。</div><div class="line">      direct buffer则是通过JNI在Java的虚拟机外的内存中分配了一块缓冲区(所以即使在运行时通过-Xmx指定了Java虚拟</div><div class="line">      机的最大堆内存，还是可以实例化超出该大小的Direct ByteBuffer),该块并不直接由Java虚拟机负责垃圾回收收集，</div><div class="line">      但是在direct buffer包装类被回收时，会通过Java Reference机制来释放该内存块。(但Direct Buffer的JAVA对象</div><div class="line">      是归GC管理的，只要GC回收了它的JAVA对象，操作系统才会释放Direct Buffer所申请的空间)</div><div class="line"></div><div class="line">      两者各有优劣势:direct buffer对比 heap buffer:</div><div class="line">      </div><div class="line">      劣势：创建和释放Direct Buffer的代价比Heap Buffer得要高；</div><div class="line">      优势：当我们把一个Direct Buffer写入Channel的时候，就好比是“内核缓冲区”的内容直接写入了Channel，这样显然快了，</div><div class="line">            减少了数据拷贝（因为我们平时的read/write都是需要在I/O设备与应用程序空间之间的“内核缓冲区”中转一下的）。</div><div class="line">            而当我们把一个Heap Buffer写入Channel的时候，实际上底层实现会先构建一个临时的Direct Buffer，然后把</div><div class="line">            Heap Buffer的内容复制到这个临时的Direct Buffer上，再把这个Direct Buffer写出去。当然，如果我们多次</div><div class="line">            调用write方法，把一个Heap Buffer写入Channel，底层实现可以重复使用临时的Direct Buffer，这样不至于因为</div><div class="line">            频繁地创建和销毁Direct Buffer影响性能。</div><div class="line"></div><div class="line">      结论：Direct Buffer创建和销毁的代价很高，所以要用在尽可能重用的地方。 比如周期长传输文件大采用direct buffer，</div><div class="line">            不然一般情况下就直接用heap buffer 就好。</div></pre></td></tr></table></figure>
-<h3 id="编解码过滤器"><a href="#编解码过滤器" class="headerlink" title="编解码过滤器"></a>编解码过滤器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<h3 id="Executor-过滤器"><a href="#Executor-过滤器" class="headerlink" title="Executor 过滤器"></a>Executor 过滤器</h3><ul>
-<li>线程模型</li>
-</ul>
-<p><img src="/blogs/images/mina-1.png" alt="线程模型-1"><br><img src="/blogs/images/mina-2.png" alt="线程模型-2"></p>
-
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/blogs/2016/12/07/关于mina-md/#more">more >></a>
+        </p>
       
     </div>
     <div class="article-info article-info-index">
@@ -324,60 +377,6 @@
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/nio/">nio</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/rpc/">rpc</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo-提交到搜索引擎" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/2016/10/19/hexo-提交到搜索引擎/">hexo 提交到搜索引擎</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">本文主要是为了搜索引擎可以更加友好的搜到我们指定的站点内容。</div><div class="line">参考文章：http://www.jianshu.com/p/619dab2d3c08</div><div class="line">https://codingbubble.github.io/2015/05/08/custom-your-Hexo/</div><div class="line">http://azeril.me/blog/Markdown-Syntax.html</div></pre></td></tr></table></figure>
-<h3 id="提交到chrome搜索引擎"><a href="#提交到chrome搜索引擎" class="headerlink" title="提交到chrome搜索引擎"></a>提交到chrome搜索引擎</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">可以通过如下方式来查看chrome是否已经收录我们的站点</div><div class="line">site:https://nickliuyong.github.io/blogs/</div></pre></td></tr></table></figure>
-<h3 id="提交到搜索引擎"><a href="#提交到搜索引擎" class="headerlink" title="提交到搜索引擎"></a>提交到搜索引擎</h3><p><a href="https://www.google.com/webmasters/tools/home?hl=zh-CN" title="访问chrome">Google搜索引擎入口</a></p>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/blogs/2016/10/19/hexo-提交到搜索引擎/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/blogs/2016/10/19/hexo-提交到搜索引擎/" class="archive-article-date">
-  	<time datetime="2016-10-19T05:25:41.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-10-19</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/hexo/">hexo</a></li></ul>
 	</div>
 
       
@@ -464,7 +463,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
+    				<a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/git/" style="font-size: 10px;">git</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
     			</div>
     	</section>
     
