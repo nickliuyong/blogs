@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="google-site-verification" content="naRxhm3UAbDuc4VvySQES6KEPLkiIapHrMvMzENeAt4" />
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>rocketmq-broadcast-issule | 幸福双星的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="场景描述rocketmq-broker:v 3.2.6
+rocketmq-client:v3.2.6
+consumer model:push consumer
+message model:broadcast model
+问题 ： 在以上场景下，进行消息广播消费，先后建立了俩个组keywordsGroup（前人建立）、keywordsGroup1（我建立）
+结果 ： 使用keywordsGroup组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rocketmq-broadcast-issule">
+<meta property="og:url" content="https://nickliuyong.github.io/blogs/2017/02/24/rocketmq-broadcast-issule/index.html">
+<meta property="og:site_name" content="幸福双星的博客">
+<meta property="og:description" content="场景描述rocketmq-broker:v 3.2.6
+rocketmq-client:v3.2.6
+consumer model:push consumer
+message model:broadcast model
+问题 ： 在以上场景下，进行消息广播消费，先后建立了俩个组keywordsGroup（前人建立）、keywordsGroup1（我建立）
+结果 ： 使用keywordsGroup组">
+<meta property="og:image" content="https://nickliuyong.github.io/blogs/blogs/images/rocketmq-broadcast-issule-1.png">
+<meta property="og:image" content="https://nickliuyong.github.io/blogs/blogs/images/rocketmq-broadcast-issule-2.png">
+<meta property="og:image" content="https://nickliuyong.github.io/blogs/blogs/images/rocketmq-broadcast-issule-3.png">
+<meta property="og:image" content="https://nickliuyong.github.io/blogs/blogs/images/rocketmq-broadcast-issule-4.png">
+<meta property="og:image" content="https://nickliuyong.github.io/blogs/blogs/images/rocketmq-broadcast-issule-5.png">
+<meta property="og:updated_time" content="2017-02-24T10:12:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rocketmq-broadcast-issule">
+<meta name="twitter:description" content="场景描述rocketmq-broker:v 3.2.6
+rocketmq-client:v3.2.6
+consumer model:push consumer
+message model:broadcast model
+问题 ： 在以上场景下，进行消息广播消费，先后建立了俩个组keywordsGroup（前人建立）、keywordsGroup1（我建立）
+结果 ： 使用keywordsGroup组">
+<meta name="twitter:image" content="https://nickliuyong.github.io/blogs/blogs/images/rocketmq-broadcast-issule-1.png">
+  
+    <link rel="alternative" href="/atom.xml" title="幸福双星的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/blogs/images/favicon.ico">
+  
+  <script src="/blogs/style.js"></script>
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/blogs" class="profilepic">
+			
+			<img src="/blogs/images/avatar.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/blogs">幸福双星</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/blogs/">主页</a></li>
+	        
+				<li><a href="/blogs/archives">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">友链</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/nickliuyong/" title="github">github</a>
+		        
+					<a class="mail" target="_blank" href="mailto:nickliuyong5@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">幸福双星</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/blogs/images/avatar.jpg" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">幸福双星</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/blogs/">主页</a></li>
+		        
+					<li><a href="/blogs/archives">随笔</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/nickliuyong/" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="mailto:nickliuyong5@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-rocketmq-broadcast-issule" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      rocketmq-broadcast-issule
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="场景描述"><a href="#场景描述" class="headerlink" title="场景描述"></a>场景描述</h3><p>rocketmq-broker:v 3.2.6</p>
+<p>rocketmq-client:v3.2.6</p>
+<p>consumer model:push consumer</p>
+<p>message model:broadcast model</p>
+<p>问题 ： 在以上场景下，进行消息广播消费，先后建立了俩个组keywordsGroup（前人建立）、keywordsGroup1（我建立）</p>
+<p>结果 ： 使用keywordsGroup组进行广播消费，发现拉取不到消息；使用keywordsGroup1一切正常；（怀疑肯定是人品问题？？）</p>
+<a id="more"></a>
+<h3 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h3><p>读过相关文档或者源码的同学肯定知道，rocketmq 在广播消费时，会吧offset存储在本地的json文件中：其存储路径可以从源代码中找到</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LocalFileOffsetStore</span> <span class="keyword">implements</span> <span class="title">OffsetStore</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String LocalOffsetStoreDir = System.getProperty(</div><div class="line">            <span class="string">"rocketmq.client.localOffsetStoreDir"</span>,</div><div class="line">            System.getProperty(<span class="string">"user.home"</span>) + File.separator + <span class="string">".rocketmq_offsets"</span>);</div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> Logger log = ClientLogger.getLog();</div><div class="line">    <span class="comment">//以下代码省略</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过上面可以拼接出完整路径，eg : C:\Users\NickLiu.rocketmq_offsets\10.3.30.203@gogo\keywordsGroup\offsets.json  (mac的同学请忽略，毕竟屌丝windows)</p>
+<p>查看文件内容发现：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"offsetTable"</span>:&#123;&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>于是，开始怀疑，难道消息没有发送到broker(这个通过mqadmin 后台很快的排除这种情况)</p>
+<p>附上 mqadmin 一些命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">updateTopic          Update or create topic</div><div class="line">deleteTopic          Delete topic from broker and NameServer.</div><div class="line">updateSubGroup       Update or create subscription group</div><div class="line">deleteSubGroup       Delete subscription group from broker.</div><div class="line">updateBrokerConfig   Update broker&apos;s config</div><div class="line">topicRoute           Examine topic route info</div><div class="line">topicStatus          Examine topic Status info</div><div class="line">brokerStatus         Fetch broker runtime status data</div><div class="line">queryMsgById         Query Message by Id</div><div class="line">queryMsgByKey        Query Message by Key</div><div class="line">queryMsgByOffset     Query Message by offset</div><div class="line">printMsg             Print Message Detail</div><div class="line">producerConnection   Query producer&apos;s socket connection and client version</div><div class="line">consumerConnection   Query consumer&apos;s socket connection, client version and subscription</div><div class="line">consumerProgress     Query consumers&apos;s progress, speed</div><div class="line">consumerStatus       Query consumer&apos;s internal data structure</div><div class="line">cloneGroupOffset     clone offset from other group.</div><div class="line">clusterList          List all of clusters</div><div class="line">topicList            Fetch all topic list from name server</div><div class="line">updateKvConfig       Create or update KV config.</div><div class="line">deleteKvConfig       Delete KV config.</div><div class="line">wipeWritePerm        Wipe write perm of broker in all name server</div><div class="line">resetOffsetByTime    Reset consumer offset by timestamp(without client restart).</div><div class="line">updateOrderConf      Create or update or delete order conf</div><div class="line">cleanExpiredCQ       Clean expired ConsumeQueue on broker.</div><div class="line">startMonitoring      Start Monitoring</div><div class="line">checkMsg             Check Message Store</div><div class="line">statsAll             Topic and Consumer tps stats</div><div class="line">syncDocs             Synchronize wiki and issue to github.com</div></pre></td></tr></table></figure>
+<p>看完了上面命令的人我就不说啥了，偶尔敲还能记得，像我为了解决这个恶心的bug，敲的就整个让人不好了。</p>
+<p>说这么多，主要是为了给运维大大们推荐一下：图形话界面工具 rocketmq-console ，先上图感受一下：</p>
+<p><img src="/blogs/images/rocketmq-broadcast-issule-1.png" alt="rocketmq-console"></p>
+<h3 id="rocketmq-console-部署"><a href="#rocketmq-console-部署" class="headerlink" title="rocketmq-console 部署"></a>rocketmq-console 部署</h3><p>觉得敲命令比较爽的童鞋，此章忽略</p>
+<p><a href="https://github.com/zhangyl/rocketmq-console" target="_blank" rel="external">rocketmq-console下载</a></p>
+<p>修改配置文件(src/main/resources/config.properties)<br>rocketmq.namesrv.addr=192.168.1.107:9999</p>
+<p>其它的按照普通war工程编译部署就好了~</p>
+<h3 id="源码读取"><a href="#源码读取" class="headerlink" title="源码读取"></a>源码读取</h3><p>以上讲了这么多，并没有解决问题，于是只剩下最后一招，闭着眼睛读源码~(我内心绝对是拒绝的)</p>
+<p>具体过程不在叙述：附上最后读取完之后的时序图一张，以便帮助大家读取rocketmq的消费流程</p>
+<p><img src="/blogs/images/rocketmq-broadcast-issule-2.png" alt="rocketmq-consumer-uml"></p>
+<p>最后在整个消费的回调过程中发现了问题</p>
+<p><img src="/blogs/images/rocketmq-broadcast-issule-3.png" alt="rocketmq-consumer-uml"></p>
+<p>没错，竟然不是抛异常，就是只是这么一个信息~</p>
+<h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3><p>通过以上信息定位出问题出在rocketmq-broker上面，最终在broker的源码上找到如下代码：</p>
+<p><img src="/blogs/images/rocketmq-broadcast-issule-4.png" alt="rocketmq-consumer-uml"></p>
+<p>没错就是这个配置出问题了，根据上下文代码可以最终定位到，consumer在消费时，会在broker<br>上产生相关的一个订阅的文件，其路径相关代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.alibaba.rocketmq.broker;</div><div class="line"><span class="keyword">import</span> java.io.File;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BrokerPathConfigHelper</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String brokerConfigPath = System.getProperty(<span class="string">"user.home"</span>) + File.separator + <span class="string">"store"</span></div><div class="line">            + File.separator + <span class="string">"config"</span> + File.separator + <span class="string">"broker.properties"</span>;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getBrokerConfigPath</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> brokerConfigPath;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setBrokerConfigPath</span><span class="params">(String path)</span> </span>&#123;</div><div class="line">        brokerConfigPath = path;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getTopicConfigPath</span><span class="params">(<span class="keyword">final</span> String rootDir)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> rootDir + File.separator + <span class="string">"config"</span> + File.separator + <span class="string">"topics.json"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getConsumerOffsetPath</span><span class="params">(<span class="keyword">final</span> String rootDir)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> rootDir + File.separator + <span class="string">"config"</span> + File.separator + <span class="string">"consumerOffset.json"</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">getSubscriptionGroupPath</span><span class="params">(<span class="keyword">final</span> String rootDir)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> rootDir + File.separator + <span class="string">"config"</span> + File.separator + <span class="string">"subscriptionGroup.json"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>最终在broker配置文件(/opt/rocketmq/data/broker-a/store/config/subscriptionGroup.json)下发现</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">"keywordsGroup":&#123;</div><div class="line">                        "brokerId":0,</div><div class="line">                        "consumeBroadcastEnable":false,</div><div class="line">                        "consumeEnable":true,</div><div class="line">                        "consumeFromMinEnable":false,</div><div class="line">                        "groupName":"keywordsGroup",</div><div class="line">                        "retryMaxTimes":16,</div><div class="line">                        "retryQueueNums":1,</div><div class="line">                        "whichBrokerWhenConsumeSlowly":1</div><div class="line">                &#125;,</div><div class="line">"keywordsGroup1":&#123;</div><div class="line">                        "brokerId":0,</div><div class="line">                        "consumeBroadcastEnable":true,</div><div class="line">                        "consumeEnable":true,</div><div class="line">                        "consumeFromMinEnable":true,</div><div class="line">                        "groupName":"keywordsGroup1",</div><div class="line">                        "retryMaxTimes":16,</div><div class="line">                        "retryQueueNums":1,</div><div class="line">                        "whichBrokerWhenConsumeSlowly":1</div><div class="line">                &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>经过对比可以发现，consumeBroadcastEnable被设置成了false</p>
+</blockquote>
+<h3 id="定位问题"><a href="#定位问题" class="headerlink" title="定位问题"></a>定位问题</h3><p>通过上文已经找到了问题所在，只要把配置文件中consumeBroadcastEnable设置为true,并重启broker即可生效。</p>
+<p>那问题来了，通过源码可以发现，此属性默认为true(此处不在粘贴代码)，什么情况下会被改为false??</p>
+<p>最终经过定位发现broker中有如下一段代码<br><img src="/blogs/images/rocketmq-broadcast-issule-5.png" alt="rocketmq-consumer-uml"></p>
+<blockquote>
+<p>通过以上可以发现，一旦管理员通过后台(mqadmin)执行了updateSubGroup命令， consumeBroadcastEnable属性则会被设定成false.</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blogs/2017/02/24/rocketmq-broadcast-issule/" class="archive-article-date">
+  	<time datetime="2017-02-24T08:52:33.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-02-24</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/rocketmq/">rocketmq</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/blogs/2017/01/24/git-tag/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git tag</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="share_addthis share_jia">
+  <div class="sharing addthis_toolbox share">
+  	<span class="jiathis_txt">Share to: &nbsp; </span>
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 幸福双星
+    	</div>
+		<div class="footer-right">
+			<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+			<span id="busuanzi_container_site_uv">
+  				本站访客数<span id="busuanzi_value_site_uv"></span>人次
+			</span>
+			<!--
+			<span id="busuanzi_container_site_pv">
+   			    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+			</span> -->
+		</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/blogs/",
+		innerArchive: false
+	}
+</script>
+
+<script src="/blogs/./main.js"></script>
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+      <li data-hook="tools-section-friends"><span class="text">友链</span><i class="icon-link"></i></li>
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/git/" style="font-size: 10px;">git</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rocketmq/" style="font-size: 10px;">rocketmq</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
+    			</div>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends">
+  		
+  			<div class="friends-wrap" id="js-friends">
+  			
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://fangyi.me">前端phieo</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://greenmzc.github.io">前端Green</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="https://www.excaliburhan.com/">前端小平</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://yuchuanxi.com/">前端土豆</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.icdoit.com/">没事溜啦</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.cnblogs.com">博客园</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.imooc.com">慕课网</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.tuicool.com">推酷网</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.open-open.com">深度开源</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.runoob.com">菜鸟教程</a>
+  	        
+  	          <a target="_blank" class="main-nav-link switch-friends-link" href="http://stackoverflow.com">stackoverflow</a>
+  	        
+  	        </div>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">我只是一枚搬砖的程序员</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
