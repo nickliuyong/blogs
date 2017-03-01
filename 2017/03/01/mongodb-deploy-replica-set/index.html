@@ -5,21 +5,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>RocketMQ | 幸福双星的博客</title>
+  <title>mongodb-deploy-replica-set | 幸福双星的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="RocketMQ 简介12参考文档：http://www.jianshu.com/p/453c6e7ff81c#           https://www.aliyun.com/product/ons?spm=5176.8142029.388261.82.BFHC5a
-pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic">
+  <meta name="description" content="monogdb deploy-replica-set参考文档：
+https://docs.mongodb.com/manual/tutorial/deploy-replica-set/
+http://www.tuicool.com/articles/YruU7z
+安装1234567curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RocketMQ">
-<meta property="og:url" content="https://nickliuyong.github.io/blogs/2016/12/23/RocketMQ/index.html">
+<meta property="og:title" content="mongodb-deploy-replica-set">
+<meta property="og:url" content="https://nickliuyong.github.io/blogs/2017/03/01/mongodb-deploy-replica-set/index.html">
 <meta property="og:site_name" content="幸福双星的博客">
-<meta property="og:description" content="RocketMQ 简介12参考文档：http://www.jianshu.com/p/453c6e7ff81c#           https://www.aliyun.com/product/ons?spm=5176.8142029.388261.82.BFHC5a
-pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic">
-<meta property="og:updated_time" content="2016-12-23T07:19:58.000Z">
+<meta property="og:description" content="monogdb deploy-replica-set参考文档：
+https://docs.mongodb.com/manual/tutorial/deploy-replica-set/
+http://www.tuicool.com/articles/YruU7z
+安装1234567curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_">
+<meta property="og:updated_time" content="2017-03-01T02:40:02.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RocketMQ">
-<meta name="twitter:description" content="RocketMQ 简介12参考文档：http://www.jianshu.com/p/453c6e7ff81c#           https://www.aliyun.com/product/ons?spm=5176.8142029.388261.82.BFHC5a
-pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic">
+<meta name="twitter:title" content="mongodb-deploy-replica-set">
+<meta name="twitter:description" content="monogdb deploy-replica-set参考文档：
+https://docs.mongodb.com/manual/tutorial/deploy-replica-set/
+http://www.tuicool.com/articles/YruU7z
+安装1234567curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_">
   
     <link rel="alternative" href="/atom.xml" title="幸福双星的博客" type="application/atom+xml">
   
@@ -130,7 +136,7 @@ pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic
 </nav>
 
       <div class="body-wrap">
-        <article id="post-RocketMQ" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-mongodb-deploy-replica-set" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -140,7 +146,7 @@ pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic
         
   
     <h1 class="article-title" itemprop="name">
-      RocketMQ
+      mongodb-deploy-replica-set
     </h1>
   
 
@@ -148,20 +154,31 @@ pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="RocketMQ-简介"><a href="#RocketMQ-简介" class="headerlink" title="RocketMQ 简介"></a>RocketMQ 简介</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">参考文档：http://www.jianshu.com/p/453c6e7ff81c#  </div><div class="line">         https://www.aliyun.com/product/ons?spm=5176.8142029.388261.82.BFHC5a</div></pre></td></tr></table></figure>
-<h3 id="pull-consumer-与-push-consumer区别"><a href="#pull-consumer-与-push-consumer区别" class="headerlink" title="pull consumer 与 push consumer区别"></a>pull consumer 与 push consumer区别</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">参考文档：https://yq.aliyun.com/articles/55627</div></pre></td></tr></table></figure>
+        <h3 id="monogdb-deploy-replica-set"><a href="#monogdb-deploy-replica-set" class="headerlink" title="monogdb deploy-replica-set"></a>monogdb deploy-replica-set</h3><p>参考文档：</p>
+<p><a href="https://docs.mongodb.com/manual/tutorial/deploy-replica-set/" target="_blank" rel="external">https://docs.mongodb.com/manual/tutorial/deploy-replica-set/</a></p>
+<p><a href="http://www.tuicool.com/articles/YruU7z" target="_blank" rel="external">http://www.tuicool.com/articles/YruU7z</a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.2.tgz</div><div class="line">tar -xzvf mongodb-linux-x86_64-rhel70-3.4.2.tgz</div><div class="line">mkdir mongo-replic</div><div class="line">mv mongodb-linux-x86_64-rhel70-3.4.2.tgz  mongo-replic/mongodb</div><div class="line">mkdir -p data/master</div><div class="line">mkdir -p data/slaver  </div><div class="line">mkdir -p data/arbiter</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#master.conf</div><div class="line">#数据存放目录</div><div class="line">dbpath=/opt/monogodb/mongo-replic/mongodb/data/master</div><div class="line">#日志存放路径</div><div class="line">logpath=/opt/monogodb/mongo-replic/mongodb/log/master.log</div><div class="line">#进程文件，方便停止mongodb</div><div class="line">pidfilepath=/opt/monogodb/mongo-replic/mongodb/pid/master.pid</div><div class="line">#为每一个数据库按照数据库名建立文件夹存放</div><div class="line">directoryperdb=true</div><div class="line">#以追加的方式记录日志</div><div class="line">logappend=true</div><div class="line">#replica set的名字</div><div class="line">replSet=testrs</div><div class="line">#mongodb所绑定的ip地址</div><div class="line">bind_ip=192.168.2.185</div><div class="line">#mongodb进程所使用的端口号，默认为27017</div><div class="line">port=27017</div><div class="line">#mongodb操作日志文件的最大大小。单位为Mb，默认为硬盘剩余空间的5%</div><div class="line">oplogSize=1024</div><div class="line">#以后台方式运行进程</div><div class="line">fork=true</div><div class="line">#不预先分配存储</div><div class="line">#noprealloc=true</div></pre></td></tr></table></figure>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bin/mongod <span class="_">-f</span> config/master.conf</div><div class="line">bin/mongod <span class="_">-f</span> config/slaver.conf</div><div class="line">bin/mongod <span class="_">-f</span> config/arbiter.conf</div></pre></td></tr></table></figure>
+<h3 id="initiate-the-replica-set"><a href="#initiate-the-replica-set" class="headerlink" title="initiate the replica set"></a>initiate the replica set</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">bin/mongo 192.168.2.185:27017</div><div class="line"></div><div class="line">use admin</div><div class="line"></div><div class="line">rs.initiate( &#123;</div><div class="line">   _id : &quot;testrs&quot;,</div><div class="line">   members: [ &#123; _id : 0, host : &quot;192.168.2.185:27017&quot; &#125;, &#123; _id : 1, host : &quot;192.168.2.185:27018&quot; &#125;,&#123; _id : 2, host : &quot;192.168.2.185:27019&quot;,arbiterOnly:true &#125;]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>1、默认情况下SECONDARY不能读写，如果想进行读取操作，可以执行rs.slaveOk()，就可以从SECONDARY读取了。</p>
+<h3 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h3><p>1、about to fork child process, waiting until server is ready for connections.<br>   ERROR: child process failed, exited with error number 1</p>
+<blockquote>
+<p>解决：把配置中相应用到的目录(data、log、pid)都手动创建好后，重新启动就正常了。</p>
+</blockquote>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/blogs/2016/12/23/RocketMQ/" class="archive-article-date">
-  	<time datetime="2016-12-23T06:51:54.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-23</time>
+      <a href="/blogs/2017/03/01/mongodb-deploy-replica-set/" class="archive-article-date">
+  	<time datetime="2017-03-01T01:43:15.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-01</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/RocketMQ/">RocketMQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/中间件/">中间件</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/mongo/">mongo</a></li></ul>
 	</div>
 
       
@@ -174,18 +191,18 @@ pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic
   
 <nav id="article-nav">
   
-    <a href="/blogs/2016/12/23/os/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/blogs/2017/03/01/monogdb-deploy-shard-cluster/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          os
+          monogdb-deploy-shard-cluster
         
       </div>
     </a>
   
   
-    <a href="/blogs/2016/12/07/关于mina-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">关于mina.md</div>
+    <a href="/blogs/2017/02/24/rocketmq-broadcast-issule/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">rocketmq-broadcast-issule</div>
       <i class="icon-circle-right"></i>
     </a>
   

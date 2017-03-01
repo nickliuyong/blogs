@@ -128,6 +128,117 @@
       <div class="body-wrap">
         
   
+    <article id="post-monogdb-deploy-shard-cluster" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/2017/03/01/monogdb-deploy-shard-cluster/">monogdb-deploy-shard-cluster</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="monogdb-deploy-shard-cluster"><a href="#monogdb-deploy-shard-cluster" class="headerlink" title="monogdb deploy-shard-cluster"></a>monogdb deploy-shard-cluster</h3><p>参考文档: </p>
+<p><a href="https://docs.mongodb.com/master/tutorial/deploy-shard-cluster/">https://docs.mongodb.com/master/tutorial/deploy-shard-cluster/</a></p>
+<p><a href="http://www.tuicool.com/articles/NnEBFb">http://www.tuicool.com/articles/NnEBFb</a></p>
+<p><a href="http://blog.csdn.net/luonanqin/article/details/8497860">http://blog.csdn.net/luonanqin/article/details/8497860</a></p>
+<h3 id="创建配置服务器"><a href="#创建配置服务器" class="headerlink" title="创建配置服务器"></a>创建配置服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bin/mongod <span class="_">-f</span> config/configsvr-0.conf</div><div class="line">bin/mongod <span class="_">-f</span> config/configsvr-1.conf</div><div class="line">bin/mongod <span class="_">-f</span> config/configsvr-2.conf</div></pre></td></tr></table></figure>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/blogs/2017/03/01/monogdb-deploy-shard-cluster/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blogs/2017/03/01/monogdb-deploy-shard-cluster/" class="archive-article-date">
+  	<time datetime="2017-03-01T01:43:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-01</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/mongo/">mongo</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-mongodb-deploy-replica-set" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/2017/03/01/mongodb-deploy-replica-set/">mongodb-deploy-replica-set</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="monogdb-deploy-replica-set"><a href="#monogdb-deploy-replica-set" class="headerlink" title="monogdb deploy-replica-set"></a>monogdb deploy-replica-set</h3><p>参考文档：</p>
+<p><a href="https://docs.mongodb.com/manual/tutorial/deploy-replica-set/">https://docs.mongodb.com/manual/tutorial/deploy-replica-set/</a></p>
+<p><a href="http://www.tuicool.com/articles/YruU7z">http://www.tuicool.com/articles/YruU7z</a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">curl -O https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.2.tgz</div><div class="line">tar -xzvf mongodb-linux-x86_64-rhel70-3.4.2.tgz</div><div class="line">mkdir mongo-replic</div><div class="line">mv mongodb-linux-x86_64-rhel70-3.4.2.tgz  mongo-replic/mongodb</div><div class="line">mkdir -p data/master</div><div class="line">mkdir -p data/slaver  </div><div class="line">mkdir -p data/arbiter</div></pre></td></tr></table></figure>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/blogs/2017/03/01/mongodb-deploy-replica-set/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blogs/2017/03/01/mongodb-deploy-replica-set/" class="archive-article-date">
+  	<time datetime="2017-03-01T01:43:15.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-01</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/mongo/">mongo</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-rocketmq-broadcast-issule" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -297,112 +408,9 @@
 
 
   
-    <article id="post-os" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/2016/12/23/os/">os</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="windows-与-linux"><a href="#windows-与-linux" class="headerlink" title="windows 与 linux"></a>windows 与 linux</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 单用户单任务操作系统：是指一台计算机同时只能有一个用户在使用，该用户一次只能提交一个作业，一个用户独自享用系统的全部硬件和软件资源。（如：MS-DOS、PC-DOS、CP/M）</div><div class="line">- 单用户多任务操作系统：是指一台计算机同时只能有一个用户使用，但该用户一次可以运行或提交多个作业。（如：windows）（window2000和XP都可以有多个用户，为什么还是单用户呢？</div><div class="line">  因为windows虽然可以设置多个用户，但是同一时候只能让一个用户独享系统的所有资源，所以windows只能是单用户操作系统。因为“多用户”的定义是：允许多个用户通过各自的终端，使用同一台主机，共享主机系统的各类资源）</div><div class="line">- 多用户与多任务操作系统：是指一台计算机可以同时有多个用户同时使用，并且同时可以执行由多个用户提交的多个任务（如Unix/Linux等）</div></pre></td></tr></table></figure>
-<h3 id="多核cpu-与-多个cpu"><a href="#多核cpu-与-多个cpu" class="headerlink" title="多核cpu 与 多个cpu"></a>多核cpu 与 多个cpu</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- 多个cpu：多个单核CPU，每一个CPU都需要有较为独立的电路支持，有自己的Cache，而他们之间通过板上的总线进行通信。</div><div class="line">- 多核cpu：多核之间通过芯片内部总线进行通信，共享使用内存。</div></pre></td></tr></table></figure>
-<h3 id="cpu、缓存和内存"><a href="#cpu、缓存和内存" class="headerlink" title="cpu、缓存和内存"></a>cpu、缓存和内存</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- cpu：每一个线程都需要按照分配的时间片使用cpu</div><div class="line">- 缓存: 用于存储cpu和内存交互的高频数据、指令</div><div class="line">- 内存：存储程序运行时数据，可与cpu直接交互</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/blogs/2016/12/23/os/" class="archive-article-date">
-  	<time datetime="2016-12-23T08:20:37.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-23</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/操作系统/">操作系统</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-RocketMQ" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/2016/12/23/RocketMQ/">RocketMQ</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="RocketMQ-简介"><a href="#RocketMQ-简介" class="headerlink" title="RocketMQ 简介"></a>RocketMQ 简介</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">参考文档：http://www.jianshu.com/p/453c6e7ff81c#  </div><div class="line">         https://www.aliyun.com/product/ons?spm=5176.8142029.388261.82.BFHC5a</div></pre></td></tr></table></figure>
-<h3 id="pull-consumer-与-push-consumer区别"><a href="#pull-consumer-与-push-consumer区别" class="headerlink" title="pull consumer 与 push consumer区别"></a>pull consumer 与 push consumer区别</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">参考文档：https://yq.aliyun.com/articles/55627</div></pre></td></tr></table></figure>
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/blogs/2016/12/23/RocketMQ/" class="archive-article-date">
-  	<time datetime="2016-12-23T06:51:54.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-23</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/RocketMQ/">RocketMQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/中间件/">中间件</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blogs/page/2/">2</a><a class="extend next" rel="next" href="/blogs/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/blogs/page/2/">2</a><a class="page-number" href="/blogs/page/3/">3</a><a class="extend next" rel="next" href="/blogs/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -467,7 +475,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/git/" style="font-size: 10px;">git</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rocketmq/" style="font-size: 10px;">rocketmq</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
+    				<a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/git/" style="font-size: 10px;">git</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/mongo/" style="font-size: 20px;">mongo</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rocketmq/" style="font-size: 10px;">rocketmq</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
     			</div>
     	</section>
     

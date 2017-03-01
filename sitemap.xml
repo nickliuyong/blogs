@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/01/mongodb-deploy-replica-set/</loc>
+    
+    <lastmod>2017-03-01T02:40:02.798Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/01/monogdb-deploy-shard-cluster/</loc>
+    
+    <lastmod>2017-03-01T02:39:06.639Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://nickliuyong.github.io/blogs/blogs/2017/02/24/rocketmq-broadcast-issule/</loc>
     
     <lastmod>2017-02-24T10:12:00.000Z</lastmod>

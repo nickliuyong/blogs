@@ -5,21 +5,30 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>RocketMQ | 幸福双星的博客</title>
+  <title>monogdb-deploy-shard-cluster | 幸福双星的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="RocketMQ 简介12参考文档：http://www.jianshu.com/p/453c6e7ff81c#           https://www.aliyun.com/product/ons?spm=5176.8142029.388261.82.BFHC5a
-pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic">
+  <meta name="description" content="monogdb deploy-shard-cluster参考文档: 
+https://docs.mongodb.com/master/tutorial/deploy-shard-cluster/
+http://www.tuicool.com/articles/NnEBFb
+http://blog.csdn.net/luonanqin/article/details/8497860
+创建配置服务器1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RocketMQ">
-<meta property="og:url" content="https://nickliuyong.github.io/blogs/2016/12/23/RocketMQ/index.html">
+<meta property="og:title" content="monogdb-deploy-shard-cluster">
+<meta property="og:url" content="https://nickliuyong.github.io/blogs/2017/03/01/monogdb-deploy-shard-cluster/index.html">
 <meta property="og:site_name" content="幸福双星的博客">
-<meta property="og:description" content="RocketMQ 简介12参考文档：http://www.jianshu.com/p/453c6e7ff81c#           https://www.aliyun.com/product/ons?spm=5176.8142029.388261.82.BFHC5a
-pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic">
-<meta property="og:updated_time" content="2016-12-23T07:19:58.000Z">
+<meta property="og:description" content="monogdb deploy-shard-cluster参考文档: 
+https://docs.mongodb.com/master/tutorial/deploy-shard-cluster/
+http://www.tuicool.com/articles/NnEBFb
+http://blog.csdn.net/luonanqin/article/details/8497860
+创建配置服务器1">
+<meta property="og:updated_time" content="2017-03-01T02:39:06.639Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RocketMQ">
-<meta name="twitter:description" content="RocketMQ 简介12参考文档：http://www.jianshu.com/p/453c6e7ff81c#           https://www.aliyun.com/product/ons?spm=5176.8142029.388261.82.BFHC5a
-pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic">
+<meta name="twitter:title" content="monogdb-deploy-shard-cluster">
+<meta name="twitter:description" content="monogdb deploy-shard-cluster参考文档: 
+https://docs.mongodb.com/master/tutorial/deploy-shard-cluster/
+http://www.tuicool.com/articles/NnEBFb
+http://blog.csdn.net/luonanqin/article/details/8497860
+创建配置服务器1">
   
     <link rel="alternative" href="/atom.xml" title="幸福双星的博客" type="application/atom+xml">
   
@@ -130,7 +139,7 @@ pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic
 </nav>
 
       <div class="body-wrap">
-        <article id="post-RocketMQ" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-monogdb-deploy-shard-cluster" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -140,7 +149,7 @@ pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic
         
   
     <h1 class="article-title" itemprop="name">
-      RocketMQ
+      monogdb-deploy-shard-cluster
     </h1>
   
 
@@ -148,20 +157,33 @@ pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="RocketMQ-简介"><a href="#RocketMQ-简介" class="headerlink" title="RocketMQ 简介"></a>RocketMQ 简介</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">参考文档：http://www.jianshu.com/p/453c6e7ff81c#  </div><div class="line">         https://www.aliyun.com/product/ons?spm=5176.8142029.388261.82.BFHC5a</div></pre></td></tr></table></figure>
-<h3 id="pull-consumer-与-push-consumer区别"><a href="#pull-consumer-与-push-consumer区别" class="headerlink" title="pull consumer 与 push consumer区别"></a>pull consumer 与 push consumer区别</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">参考文档：https://yq.aliyun.com/articles/55627</div></pre></td></tr></table></figure>
-
+        <h3 id="monogdb-deploy-shard-cluster"><a href="#monogdb-deploy-shard-cluster" class="headerlink" title="monogdb deploy-shard-cluster"></a>monogdb deploy-shard-cluster</h3><p>参考文档: </p>
+<p><a href="https://docs.mongodb.com/master/tutorial/deploy-shard-cluster/" target="_blank" rel="external">https://docs.mongodb.com/master/tutorial/deploy-shard-cluster/</a></p>
+<p><a href="http://www.tuicool.com/articles/NnEBFb" target="_blank" rel="external">http://www.tuicool.com/articles/NnEBFb</a></p>
+<p><a href="http://blog.csdn.net/luonanqin/article/details/8497860" target="_blank" rel="external">http://blog.csdn.net/luonanqin/article/details/8497860</a></p>
+<h3 id="创建配置服务器"><a href="#创建配置服务器" class="headerlink" title="创建配置服务器"></a>创建配置服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bin/mongod <span class="_">-f</span> config/configsvr-0.conf</div><div class="line">bin/mongod <span class="_">-f</span> config/configsvr-1.conf</div><div class="line">bin/mongod <span class="_">-f</span> config/configsvr-2.conf</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">sharding:</div><div class="line">  clusterRole: configsvr</div><div class="line">replication:</div><div class="line">  replSetName: configrs</div><div class="line">systemLog:</div><div class="line">   destination: file</div><div class="line">   path: &quot;/opt/monogodb/mongo-shard/log/configsvr-0.log&quot;</div><div class="line">   logAppend: true</div><div class="line">storage:</div><div class="line">   dbPath: &quot;/opt/monogodb/mongo-shard/data/configsvr-0&quot;</div><div class="line">   journal:</div><div class="line">      enabled: true</div><div class="line">processManagement:</div><div class="line">   fork: true</div><div class="line">   pidFilePath: &quot;/opt/monogodb/mongo-shard/pid/configsvr-0.pid&quot; </div><div class="line">net:</div><div class="line">   bindIp: 192.168.2.185</div><div class="line">   port: 10000</div></pre></td></tr></table></figure>
+<h3 id="initiate-the-replica-set"><a href="#initiate-the-replica-set" class="headerlink" title="initiate the replica set"></a>initiate the replica set</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">bin/mongo 192.168.2.185:10000</div><div class="line">use admin</div><div class="line"></div><div class="line">rs.initiate( &#123;</div><div class="line">   _id : &quot;configrs&quot;,</div><div class="line">   configsvr: true,</div><div class="line">   members: [ &#123; _id : 0, host : &quot;192.168.2.185:10000&quot; &#125;, &#123; _id : 1, host : &quot;192.168.2.185:10001&quot; &#125;,&#123; _id : 2, host : &quot;192.168.2.185:10002&quot;&#125;]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="创建分片服务器"><a href="#创建分片服务器" class="headerlink" title="创建分片服务器"></a>创建分片服务器</h3><p>此处仅列出与配置服务器不一致的地方</p>
+<p>配置文件 sharding:<br>         clusterRole: shardsvr</p>
+<p>initiate the replica set:</p>
+<p>rs.initiate( {<br>   _id : “shardrs”,<br>   members: [ { _id : 0, host : “192.168.2.185:20000” }, { _id : 1, host : “192.168.2.185:20001” },{ _id : 2, host : “192.168.2.185:20002”}]<br>})</p>
+<h3 id="创建路由服务器"><a href="#创建路由服务器" class="headerlink" title="创建路由服务器"></a>创建路由服务器</h3><p>此处仅列出与配置服务器不一致的地方，注意可选参数，多数参数只针对于mongod ,此处配置文件是针对于mongs</p>
+<h3 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">sharding:</div><div class="line">   configDB: configsvr/192.168.2.185:10000,192.168.2.185:10001,192.168.2.185:10002</div><div class="line">systemLog:</div><div class="line">   destination: file</div><div class="line">   path: &quot;/opt/monogodb/mongo-router/log/router-0.log&quot;</div><div class="line">   logAppend: true</div><div class="line">processManagement:</div><div class="line">   fork: true</div><div class="line">   pidFilePath: &quot;/opt/monogodb/mongo-router/pid/router-0.pid&quot;</div><div class="line">net:</div><div class="line">   bindIp: 192.168.2.185</div><div class="line">   port: 27017</div></pre></td></tr></table></figure>
+<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//start</div><div class="line">bin/mongos <span class="_">-f</span> config/router-0.conf </div><div class="line"></div><div class="line">//connect</div><div class="line">bin/mongo 192.168.2.185:27017</div><div class="line">sh.addShard(<span class="string">"shardrs/192.168.2.185:20000"</span>)</div><div class="line">sh.addShard(<span class="string">"192.168.2.185:30000"</span>)</div><div class="line">//<span class="built_in">enable</span> sharding on the target database</div><div class="line">sh.enableSharding(<span class="string">"&lt;database&gt;"</span>)</div><div class="line">//shard a Collection</div><div class="line">sh.shardCollection(<span class="string">"&lt;database&gt;.&lt;collection&gt;"</span>, &#123; &lt;key&gt; : &lt;direction&gt; &#125; )</div></pre></td></tr></table></figure>
+<h3 id="查看分片信息"><a href="#查看分片信息" class="headerlink" title="查看分片信息"></a>查看分片信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">db.printShardingStatus();</div><div class="line">//可以在 shards 集合中查到所有的片</div><div class="line">db.shards.find();</div><div class="line">//databases 集合含有已经在片上的数据库列表和一些相关信息</div><div class="line">db.databases.find();</div><div class="line">//块信息保存在 chunks 集合中，你可以看到数据到底是怎么切分到集群的。</div><div class="line">db.chunks.find()</div></pre></td></tr></table></figure>
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/blogs/2016/12/23/RocketMQ/" class="archive-article-date">
-  	<time datetime="2016-12-23T06:51:54.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-23</time>
+      <a href="/blogs/2017/03/01/monogdb-deploy-shard-cluster/" class="archive-article-date">
+  	<time datetime="2017-03-01T01:43:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-01</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/RocketMQ/">RocketMQ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/中间件/">中间件</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/mongo/">mongo</a></li></ul>
 	</div>
 
       
@@ -174,18 +196,9 @@ pull consumer 与 push consumer区别1参考文档：https://yq.aliyun.com/artic
   
 <nav id="article-nav">
   
-    <a href="/blogs/2016/12/23/os/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          os
-        
-      </div>
-    </a>
   
-  
-    <a href="/blogs/2016/12/07/关于mina-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">关于mina.md</div>
+    <a href="/blogs/2017/03/01/mongodb-deploy-replica-set/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">mongodb-deploy-replica-set</div>
       <i class="icon-circle-right"></i>
     </a>
   
