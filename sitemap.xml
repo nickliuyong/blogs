@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/01/mongodb-deploy-replica-set/</loc>
+    <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/01/linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
     
-    <lastmod>2017-03-01T02:40:02.798Z</lastmod>
+    <lastmod>2017-03-02T01:16:29.371Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/01/monogdb-deploy-shard-cluster/</loc>
     
-    <lastmod>2017-03-01T02:39:06.639Z</lastmod>
+    <lastmod>2017-03-01T10:04:49.010Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/01/mongodb-deploy-replica-set/</loc>
+    
+    <lastmod>2017-03-01T03:01:29.313Z</lastmod>
     
   </url>
   

@@ -128,6 +128,59 @@
       <div class="body-wrap">
         
   
+    <article id="post-linux-常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/2017/03/01/linux-常用命令/">linux-常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="防火墙-firewalld"><a href="#防火墙-firewalld" class="headerlink" title="防火墙(firewalld)"></a>防火墙(firewalld)</h3><p>参考文档：<a href="https://www.zhaokeli.com/Article/6321.html">https://www.zhaokeli.com/Article/6321.html</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//开启80端口</div><div class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</div><div class="line">//重启防火墙</div><div class="line">systemctl restart firewalld</div><div class="line">//启动</div><div class="line">systemctl start  firewalld</div><div class="line">//查看状态</div><div class="line">systemctl status firewalld</div><div class="line">firewall-cmd --state</div><div class="line">//停止</div><div class="line">systemctl <span class="built_in">disable</span> firewalld</div><div class="line">//禁用</div><div class="line">systemctl stop firewalld</div></pre></td></tr></table></figure>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/blogs/2017/03/01/linux-常用命令/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blogs/2017/03/01/linux-常用命令/" class="archive-article-date">
+  	<time datetime="2017-03-01T10:04:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-01</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/linux-centos7/">-linux -centos7</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-monogdb-deploy-shard-cluster" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -353,61 +406,6 @@
 
 
   
-    <article id="post-protocol-buffer" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/2017/01/06/protocol-buffer/">protocol-buffer</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="关于protocol-buffer"><a href="#关于protocol-buffer" class="headerlink" title="关于protocol buffer"></a>关于protocol buffer</h3><p><a href="https://developers.google.com/protocol-buffers/">官方文档</a> (需要VPN)</p>
-<p><a href="https://github.com/google/protobuf/releases">github地址</a> </p>
-<h3 id="protocol2-与-protocol3"><a href="#protocol2-与-protocol3" class="headerlink" title="protocol2 与 protocol3"></a>protocol2 与 protocol3</h3><p><a href="https://solicomo.com/network-dev/protobuf-proto3-vs-proto2.html">参考博客</a></p>
-<p>个人觉得总结的很到位~</p>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/blogs/2017/01/06/protocol-buffer/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/blogs/2017/01/06/protocol-buffer/" class="archive-article-date">
-  	<time datetime="2017-01-06T02:53:20.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-01-06</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/protocol-buffer/">protocol buffer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/序列化/">序列化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/网络协议通信/">网络协议通信</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/blogs/page/2/">2</a><a class="page-number" href="/blogs/page/3/">3</a><a class="extend next" rel="next" href="/blogs/page/2/">Next &raquo;</a>
@@ -475,7 +473,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/git/" style="font-size: 10px;">git</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/mongo/" style="font-size: 20px;">mongo</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rocketmq/" style="font-size: 10px;">rocketmq</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
+    				<a href="/blogs/tags/linux-centos7/" style="font-size: 10px;">-linux -centos7</a> <a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/git/" style="font-size: 10px;">git</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/mongo/" style="font-size: 20px;">mongo</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rocketmq/" style="font-size: 10px;">rocketmq</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
     			</div>
     	</section>
     

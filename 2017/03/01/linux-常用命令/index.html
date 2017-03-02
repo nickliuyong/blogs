@@ -5,17 +5,21 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Tag: 序列化 | 幸福双星的博客</title>
+  <title>linux-常用命令 | 幸福双星的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JAVA、Python、Sql、中间件笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="幸福双星的博客">
-<meta property="og:url" content="https://nickliuyong.github.io/blogs/tags/序列化/index.html">
+  <meta name="description" content="防火墙(firewalld)参考文档：https://www.zhaokeli.com/Article/6321.html
+12345678910111213//开启80端口firewall-cmd --zone=public --add-port=80/tcp --permanent//重启防火墙systemctl restart firewalld//启动systemctl start  fi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux-常用命令">
+<meta property="og:url" content="https://nickliuyong.github.io/blogs/2017/03/01/linux-常用命令/index.html">
 <meta property="og:site_name" content="幸福双星的博客">
-<meta property="og:description" content="JAVA、Python、Sql、中间件笔记">
+<meta property="og:description" content="防火墙(firewalld)参考文档：https://www.zhaokeli.com/Article/6321.html
+12345678910111213//开启80端口firewall-cmd --zone=public --add-port=80/tcp --permanent//重启防火墙systemctl restart firewalld//启动systemctl start  fi">
+<meta property="og:updated_time" content="2017-03-02T01:16:29.371Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="幸福双星的博客">
-<meta name="twitter:description" content="JAVA、Python、Sql、中间件笔记">
+<meta name="twitter:title" content="linux-常用命令">
+<meta name="twitter:description" content="防火墙(firewalld)参考文档：https://www.zhaokeli.com/Article/6321.html
+12345678910111213//开启80端口firewall-cmd --zone=public --add-port=80/tcp --permanent//重启防火墙systemctl restart firewalld//启动systemctl start  fi">
   
     <link rel="alternative" href="/atom.xml" title="幸福双星的博客" type="application/atom+xml">
   
@@ -126,54 +130,78 @@
 </nav>
 
       <div class="body-wrap">
+        <article id="post-linux-常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blogs/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blogs/2017/01/06/protocol-buffer/" class="archive-article-date">
-  	<time datetime="2017-01-06T02:53:20.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-01-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blogs/2017/01/06/protocol-buffer/">protocol-buffer</a>
+    <h1 class="article-title" itemprop="name">
+      linux-常用命令
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="防火墙-firewalld"><a href="#防火墙-firewalld" class="headerlink" title="防火墙(firewalld)"></a>防火墙(firewalld)</h3><p>参考文档：<a href="https://www.zhaokeli.com/Article/6321.html" target="_blank" rel="external">https://www.zhaokeli.com/Article/6321.html</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//开启80端口</div><div class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</div><div class="line">//重启防火墙</div><div class="line">systemctl restart firewalld</div><div class="line">//启动</div><div class="line">systemctl start  firewalld</div><div class="line">//查看状态</div><div class="line">systemctl status firewalld</div><div class="line">firewall-cmd --state</div><div class="line">//停止</div><div class="line">systemctl <span class="built_in">disable</span> firewalld</div><div class="line">//禁用</div><div class="line">systemctl stop firewalld</div></pre></td></tr></table></figure>
+<a id="more"></a>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blogs/2017/03/01/linux-常用命令/" class="archive-article-date">
+  	<time datetime="2017-03-01T10:04:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-01</time>
+</a>
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/protocol-buffer/">protocol buffer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/序列化/">序列化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/网络协议通信/">网络协议通信</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/linux-centos7/">-linux -centos7</a></li></ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-  
-    </div></section>
-  
 
-    
+  
+<nav id="article-nav">
+  
+  
+    <a href="/blogs/2017/03/01/monogdb-deploy-shard-cluster/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">monogdb-deploy-shard-cluster</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="share_addthis share_jia">
+  <div class="sharing addthis_toolbox share">
+  	<span class="jiathis_txt">Share to: &nbsp; </span>
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
+
+
+
+
+
 
 
       </div>
@@ -203,9 +231,9 @@
 		mathjax: false,
 		animate: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		root: "/blogs/",

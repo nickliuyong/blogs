@@ -21,7 +21,7 @@ https://docs.mongodb.com/master/tutorial/deploy-shard-cluster/
 http://www.tuicool.com/articles/NnEBFb
 http://blog.csdn.net/luonanqin/article/details/8497860
 创建配置服务器1">
-<meta property="og:updated_time" content="2017-03-01T02:39:06.639Z">
+<meta property="og:updated_time" content="2017-03-01T10:04:49.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="monogdb-deploy-shard-cluster">
 <meta name="twitter:description" content="monogdb deploy-shard-cluster参考文档: 
@@ -171,7 +171,10 @@ http://blog.csdn.net/luonanqin/article/details/8497860
 <p>rs.initiate( {<br>   _id : “shardrs”,<br>   members: [ { _id : 0, host : “192.168.2.185:20000” }, { _id : 1, host : “192.168.2.185:20001” },{ _id : 2, host : “192.168.2.185:20002”}]<br>})</p>
 <h3 id="创建路由服务器"><a href="#创建路由服务器" class="headerlink" title="创建路由服务器"></a>创建路由服务器</h3><p>此处仅列出与配置服务器不一致的地方，注意可选参数，多数参数只针对于mongod ,此处配置文件是针对于mongs</p>
 <h3 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">sharding:</div><div class="line">   configDB: configsvr/192.168.2.185:10000,192.168.2.185:10001,192.168.2.185:10002</div><div class="line">systemLog:</div><div class="line">   destination: file</div><div class="line">   path: &quot;/opt/monogodb/mongo-router/log/router-0.log&quot;</div><div class="line">   logAppend: true</div><div class="line">processManagement:</div><div class="line">   fork: true</div><div class="line">   pidFilePath: &quot;/opt/monogodb/mongo-router/pid/router-0.pid&quot;</div><div class="line">net:</div><div class="line">   bindIp: 192.168.2.185</div><div class="line">   port: 27017</div></pre></td></tr></table></figure>
-<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//start</div><div class="line">bin/mongos <span class="_">-f</span> config/router-0.conf </div><div class="line"></div><div class="line">//connect</div><div class="line">bin/mongo 192.168.2.185:27017</div><div class="line">sh.addShard(<span class="string">"shardrs/192.168.2.185:20000"</span>)</div><div class="line">sh.addShard(<span class="string">"192.168.2.185:30000"</span>)</div><div class="line">//<span class="built_in">enable</span> sharding on the target database</div><div class="line">sh.enableSharding(<span class="string">"&lt;database&gt;"</span>)</div><div class="line">//shard a Collection</div><div class="line">sh.shardCollection(<span class="string">"&lt;database&gt;.&lt;collection&gt;"</span>, &#123; &lt;key&gt; : &lt;direction&gt; &#125; )</div></pre></td></tr></table></figure>
+<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">//start</div><div class="line">bin/mongos <span class="_">-f</span> config/router-0.conf </div><div class="line"></div><div class="line">//connect</div><div class="line">bin/mongo 192.168.2.185:27017</div><div class="line">sh.addShard(<span class="string">"shardrs/192.168.2.185:20000"</span>)</div><div class="line">sh.addShard(<span class="string">"192.168.2.185:30000"</span>)</div><div class="line">//<span class="built_in">enable</span> sharding on the target database</div><div class="line">sh.enableSharding(<span class="string">"&lt;database&gt;"</span>)</div><div class="line">//shard a Collection</div><div class="line">sh.shardCollection(<span class="string">"&lt;database&gt;.&lt;collection&gt;"</span>, &#123; &lt;key&gt; : &lt;direction&gt; &#125; )</div><div class="line"></div><div class="line">//The following operation shards the target collection using the hashed sharding strategy.</div><div class="line">sh.shardCollection(<span class="string">"&lt;database&gt;.&lt;collection&gt;"</span>, &#123; &lt;key&gt; : <span class="string">"hashed"</span> &#125; )</div></pre></td></tr></table></figure>
+<blockquote>
+<p>路由服务器没有集群配置，若配置多个，可以通过配置代理，做负载均衡的方式来实现</p>
+</blockquote>
 <h3 id="查看分片信息"><a href="#查看分片信息" class="headerlink" title="查看分片信息"></a>查看分片信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">db.printShardingStatus();</div><div class="line">//可以在 shards 集合中查到所有的片</div><div class="line">db.shards.find();</div><div class="line">//databases 集合含有已经在片上的数据库列表和一些相关信息</div><div class="line">db.databases.find();</div><div class="line">//块信息保存在 chunks 集合中，你可以看到数据到底是怎么切分到集群的。</div><div class="line">db.chunks.find()</div></pre></td></tr></table></figure>
       
     </div>
@@ -195,6 +198,15 @@ http://blog.csdn.net/luonanqin/article/details/8497860
 
   
 <nav id="article-nav">
+  
+    <a href="/blogs/2017/03/01/linux-常用命令/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          linux-常用命令
+        
+      </div>
+    </a>
   
   
     <a href="/blogs/2017/03/01/mongodb-deploy-replica-set/" id="article-nav-older" class="article-nav-link-wrap">
@@ -286,7 +298,7 @@ http://blog.csdn.net/luonanqin/article/details/8497860
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/git/" style="font-size: 10px;">git</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/mongo/" style="font-size: 20px;">mongo</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rocketmq/" style="font-size: 10px;">rocketmq</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
+    				<a href="/blogs/tags/linux-centos7/" style="font-size: 10px;">-linux -centos7</a> <a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/git/" style="font-size: 10px;">git</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/mongo/" style="font-size: 20px;">mongo</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rocketmq/" style="font-size: 10px;">rocketmq</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
     			</div>
     	</section>
     
