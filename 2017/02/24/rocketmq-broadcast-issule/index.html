@@ -28,7 +28,7 @@ message model:broadcast model
 <meta property="og:image" content="https://nickliuyong.github.io/blogs/blogs/images/rocketmq-broadcast-issule-3.png">
 <meta property="og:image" content="https://nickliuyong.github.io/blogs/blogs/images/rocketmq-broadcast-issule-4.png">
 <meta property="og:image" content="https://nickliuyong.github.io/blogs/blogs/images/rocketmq-broadcast-issule-5.png">
-<meta property="og:updated_time" content="2017-02-24T10:12:00.000Z">
+<meta property="og:updated_time" content="2017-03-03T01:33:39.020Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rocketmq-broadcast-issule">
 <meta name="twitter:description" content="场景描述rocketmq-broker:v 3.2.6
@@ -208,6 +208,11 @@ message model:broadcast model
 <p>最终经过定位发现broker中有如下一段代码<br><img src="/blogs/images/rocketmq-broadcast-issule-5.png" alt="rocketmq-consumer-uml"></p>
 <blockquote>
 <p>通过以上可以发现，一旦管理员通过后台(mqadmin)执行了updateSubGroup命令， consumeBroadcastEnable属性则会被设定成false.</p>
+</blockquote>
+<h3 id="issule1-消费异常"><a href="#issule1-消费异常" class="headerlink" title="issule1 消费异常"></a>issule1 消费异常</h3><p>异常描述：多个consumer消费，其中和rocketmq部署在同一台的consumer消费正常，部署在其它服务器上的consumer无法消费，异常信息如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Caused by: com.alibaba.rocketmq.remoting.exception.RemotingConnectException: connect to &lt;<span class="number">127.0</span>.0.1:<span class="number">10911</span>&gt; failed</div><div class="line">        at com.alibaba.rocketmq.remoting.netty.NettyRemotingClient.invokeSync(NettyRemotingClient.java:<span class="number">641</span>)</div><div class="line">        at com.alibaba.rocketmq.client.impl.MQClientAPIImpl.sendMessageSync(MQClientAPIImpl.java:<span class="number">306</span>)</div><div class="line">        at com.alibaba.rocketmq.client.impl.MQClientAPIImpl.sendMessage(MQClientAPIImpl.java:<span class="number">289</span>)</div><div class="line">        at com.alibaba.rocketmq.client.impl.producer.DefaultMQProducerImpl.sendKernelImpl(DefaultMQProducerImpl.java:<span class="number">679</span>)</div><div class="line">        at com.alibaba.rocketmq.client.impl.producer.DefaultMQProducerImpl.sendDefaultImpl(DefaultMQProducerImpl.java:<span class="number">500</span>)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>可能原因是broker多网卡识别错误，可以通过修改broker配置文件brokerIP1来手动配置对外广播ip;亦或是brokerIP1配置错误(不能配置成127.0.0.1)</p>
 </blockquote>
 
       

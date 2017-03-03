@@ -21,7 +21,7 @@ https://docs.mongodb.com/master/tutorial/deploy-shard-cluster/
 http://www.tuicool.com/articles/NnEBFb
 http://blog.csdn.net/luonanqin/article/details/8497860
 创建配置服务器1">
-<meta property="og:updated_time" content="2017-03-01T10:04:49.010Z">
+<meta property="og:updated_time" content="2017-03-02T07:13:17.473Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="monogdb-deploy-shard-cluster">
 <meta name="twitter:description" content="monogdb deploy-shard-cluster参考文档: 
@@ -176,6 +176,16 @@ http://blog.csdn.net/luonanqin/article/details/8497860
 <p>路由服务器没有集群配置，若配置多个，可以通过配置代理，做负载均衡的方式来实现</p>
 </blockquote>
 <h3 id="查看分片信息"><a href="#查看分片信息" class="headerlink" title="查看分片信息"></a>查看分片信息</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">db.printShardingStatus();</div><div class="line">//可以在 shards 集合中查到所有的片</div><div class="line">db.shards.find();</div><div class="line">//databases 集合含有已经在片上的数据库列表和一些相关信息</div><div class="line">db.databases.find();</div><div class="line">//块信息保存在 chunks 集合中，你可以看到数据到底是怎么切分到集群的。</div><div class="line">db.chunks.find()</div></pre></td></tr></table></figure>
+<h3 id="shard-key-选取"><a href="#shard-key-选取" class="headerlink" title="shard key 选取"></a>shard key 选取</h3><ul>
+<li><p>若使用hashed sharding，必须在shard key上建立hashed索引</p>
+<p>若集合为空，则 sh.shardCollection(“<database>.<collection>“, { <key> : “hashed” } )</key></collection></database></p>
+<p>若集合非空，db.person.createIndex({“idCode”:”hashed”})建立hashed索引 (??此处分片并未试验成功，待后续尝试)</p>
+</li>
+</ul>
+<blockquote>
+<p>注意不允许给唯一索引建立建立hashed索引，可以给hashed索引建立普通索引</p>
+</blockquote>
+
       
     </div>
     <div class="article-info article-info-index">
