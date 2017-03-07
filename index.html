@@ -128,6 +128,60 @@
       <div class="body-wrap">
         
   
+    <article id="post-全局唯一id生成器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blogs/2017/03/07/全局唯一id生成器/">全局唯一id生成器</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>参考文档：<a href="http://www.cnblogs.com/relucent/p/4955340.html">http://www.cnblogs.com/relucent/p/4955340.html</a></p>
+<p>分布式系统中，有一些需要使用全局唯一ID的场景，这种时候为了防止ID冲突可以使用36位的UUID，但是UUID有一些缺点，首先他相对比较长，另外UUID一般是无序的。<br>有些时候我们希望能使用一种简单一些的ID，并且希望ID能够按照时间有序生成。<br>而twitter的snowflake解决了这种需求，最初Twitter把存储系统从MySQL迁移到Cassandra，因为Cassandra没有顺序ID生成机制，所以开发了这样一套全局唯一ID生成服务。</p>
+<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>snowflake的结构如下(每部分用-分开):<br>0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000<br>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/blogs/2017/03/07/全局唯一id生成器/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/blogs/2017/03/07/全局唯一id生成器/" class="archive-article-date">
+  	<time datetime="2017-03-07T08:51:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-07</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/java/">java</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-linux-常用命令" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -349,63 +403,6 @@
 
 
   
-    <article id="post-git-tag" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/2017/01/24/git-tag/">git tag</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="git-tag的使用"><a href="#git-tag的使用" class="headerlink" title="git tag的使用"></a>git tag的使用</h3><p>   一般来说，当我们发布一个版本时或者一个大版本时，需要打相应的tag来记录对应的版本号，以此来方便我们回归整个<br>   commit log，对于git 来说，当我们发布以release版本后，可以在master分支上通过 git tag来记录相应标签</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">建立标签： git tag <span class="_">-a</span> 0.0.1 -m <span class="string">"test git tag 0.0.1"</span></div><div class="line">推送到远程： git push origin --tags</div><div class="line">根据tag拉取代码并新建分支： git checkout -b 0.0.1-branch  0.0.1</div></pre></td></tr></table></figure>
-<h3 id="推荐"><a href="#推荐" class="headerlink" title="推荐:"></a>推荐:</h3><p>   一般来说，我们的工程都是采用maven编译的，建议每一次tag的建立和maven工程的version进行一一对应，如此可以清晰<br>   的拉取到对应的源码</p>
-<h3 id="总结如下"><a href="#总结如下" class="headerlink" title="总结如下"></a>总结如下</h3><pre><code>当一个分支合并到master时，需做如下几件事情：
-
-1. 打相应version的jar、war包
-
-2. 打对应version的tag
-</code></pre>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/blogs/2017/01/24/git-tag/" class="archive-article-date">
-  	<time datetime="2017-01-24T08:22:56.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-01-24</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/git/">git</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/blogs/page/2/">2</a><a class="page-number" href="/blogs/page/3/">3</a><a class="extend next" rel="next" href="/blogs/page/2/">Next &raquo;</a>
@@ -473,7 +470,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/blogs/tags/linux-centos7/" style="font-size: 10px;">-linux -centos7</a> <a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/git/" style="font-size: 10px;">git</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/mongo/" style="font-size: 20px;">mongo</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rocketmq/" style="font-size: 10px;">rocketmq</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
+    				<a href="/blogs/tags/linux-centos7/" style="font-size: 10px;">-linux -centos7</a> <a href="/blogs/tags/RocketMQ/" style="font-size: 10px;">RocketMQ</a> <a href="/blogs/tags/git/" style="font-size: 10px;">git</a> <a href="/blogs/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/blogs/tags/j2se/" style="font-size: 10px;">j2se</a> <a href="/blogs/tags/java/" style="font-size: 10px;">java</a> <a href="/blogs/tags/jdbc/" style="font-size: 10px;">jdbc</a> <a href="/blogs/tags/mongo/" style="font-size: 20px;">mongo</a> <a href="/blogs/tags/nio/" style="font-size: 10px;">nio</a> <a href="/blogs/tags/protocol-buffer/" style="font-size: 10px;">protocol buffer</a> <a href="/blogs/tags/redis/" style="font-size: 10px;">redis</a> <a href="/blogs/tags/rocketmq/" style="font-size: 10px;">rocketmq</a> <a href="/blogs/tags/rpc/" style="font-size: 10px;">rpc</a> <a href="/blogs/tags/中间件/" style="font-size: 10px;">中间件</a> <a href="/blogs/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/blogs/tags/序列化/" style="font-size: 10px;">序列化</a> <a href="/blogs/tags/操作系统/" style="font-size: 10px;">操作系统</a> <a href="/blogs/tags/网络协议通信/" style="font-size: 10px;">网络协议通信</a> <a href="/blogs/tags/面试/" style="font-size: 10px;">面试</a>
     			</div>
     	</section>
     
