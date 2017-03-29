@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/29/zookeeper/</loc>
+    
+    <lastmod>2017-03-29T03:20:19.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/29/redis-cluster/</loc>
     
     <lastmod>2017-03-29T01:21:23.000Z</lastmod>

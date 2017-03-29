@@ -5,17 +5,27 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>幸福双星的博客</title>
+  <title>zookeeper | 幸福双星的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JAVA、Python、Sql、中间件笔记">
-<meta property="og:type" content="website">
-<meta property="og:title" content="幸福双星的博客">
-<meta property="og:url" content="https://nickliuyong.github.io/blogs/index.html">
+  <meta name="description" content="deploy standaloneconf目录下提供了配置的样例zoo_sample.cfg，要将zk运行起来，需要将其名称修改为zoo.cfg。 
+bin/zkServer.sh start zoo-3.cfg (默认去config目录下查找zoo-3.cfg配置)
+./zkServer.sh start-foreground
+bin/zkCli.sh -server 192.168.0.1:2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zookeeper">
+<meta property="og:url" content="https://nickliuyong.github.io/blogs/2017/03/29/zookeeper/index.html">
 <meta property="og:site_name" content="幸福双星的博客">
-<meta property="og:description" content="JAVA、Python、Sql、中间件笔记">
+<meta property="og:description" content="deploy standaloneconf目录下提供了配置的样例zoo_sample.cfg，要将zk运行起来，需要将其名称修改为zoo.cfg。 
+bin/zkServer.sh start zoo-3.cfg (默认去config目录下查找zoo-3.cfg配置)
+./zkServer.sh start-foreground
+bin/zkCli.sh -server 192.168.0.1:2">
+<meta property="og:updated_time" content="2017-03-29T03:20:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="幸福双星的博客">
-<meta name="twitter:description" content="JAVA、Python、Sql、中间件笔记">
+<meta name="twitter:title" content="zookeeper">
+<meta name="twitter:description" content="deploy standaloneconf目录下提供了配置的样例zoo_sample.cfg，要将zk运行起来，需要将其名称修改为zoo.cfg。 
+bin/zkServer.sh start zoo-3.cfg (默认去config目录下查找zoo-3.cfg配置)
+./zkServer.sh start-foreground
+bin/zkCli.sh -server 192.168.0.1:2">
   
     <link rel="alternative" href="/atom.xml" title="幸福双星的博客" type="application/atom+xml">
   
@@ -126,9 +136,7 @@
 </nav>
 
       <div class="body-wrap">
-        
-  
-    <article id="post-zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-zookeeper" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -137,8 +145,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/2017/03/29/zookeeper/">zookeeper</a>
+    <h1 class="article-title" itemprop="name">
+      zookeeper
     </h1>
   
 
@@ -151,9 +159,14 @@
 <p>./zkServer.sh start-foreground</p>
 <p>bin/zkCli.sh -server 192.168.0.1:2181</p>
 <p>bin/zkCli.sh -server 192.168.229.160:2181,192.168.229.161:2181,192.168.229.162:2181</p>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/blogs/2017/03/29/zookeeper/#more">more >></a>
-        </p>
+<a id="more"></a>
+<h3 id="deploy-leader-follower"><a href="#deploy-leader-follower" class="headerlink" title="deploy leader-follower"></a>deploy leader-follower</h3><p>集群模式 mode: leader-follower</p>
+<p>server.1=192.168.2.185:3333:4444<br>server.2=192.168.2.185:3334:4445<br>server.3=192.168.2.185:3335:4446</p>
+<p>server.A=B：C：D：其中 A 是一个数字，表示这个是第几号服务器；B 是这个服务器的 ip 地址；C 表示的是这个服务器与集群中的 Leader 服务器交换信息的端口；D 表示的是万一集群中的 Leader 服务器挂了，<br>需要一个端口来重新进行选举，选出一个新的 Leader，而这个端口就是用来执行选举时服务器相互通信的端口。如果是伪集群的配置方式，由于 B 都是一样，所以不同的 Zookeeper 实例通信端口号不能一样，所以要给它们分配不同的端口号。</p>
+<p>同时需要在${dataDir}目录下配置myid文件指定标识该节点，缺失则无法启动</p>
+<p>异常信息如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">org.apache.zookeeper.server.quorum.QuorumPeerConfig$ConfigException: Error processing /home/crxj-coll/zookeeper-<span class="number">3.4</span>.5/bin/../conf/zoo.cfg</div><div class="line">	at org.apache.zookeeper.server.quorum.QuorumPeerConfig.parse(QuorumPeerConfig.java:<span class="number">121</span>)</div><div class="line">	at org.apache.zookeeper.server.quorum.QuorumPeerMain.initializeAndRun(QuorumPeerMain.java:<span class="number">101</span>)</div><div class="line">	at org.apache.zookeeper.server.quorum.QuorumPeerMain.main(QuorumPeerMain.java:<span class="number">78</span>)</div><div class="line">Caused by: java.lang.IllegalArgumentException: /var/tmp/zookeeper/myid file is missing</div><div class="line">	at org.apache.zookeeper.server.quorum.QuorumPeerConfig.parseProperties(QuorumPeerConfig.java:<span class="number">344</span>)</div><div class="line">	at org.apache.zookeeper.server.quorum.QuorumPeerConfig.parse(QuorumPeerConfig.java:<span class="number">117</span>)</div><div class="line">	... <span class="number">2</span> more</div><div class="line">Invalid config, exiting abnormally</div></pre></td></tr></table></figure>
+
       
     </div>
     <div class="article-info article-info-index">
@@ -174,243 +187,37 @@
   </div>
 </article>
 
-
-
-
-
-
-
-
-
-
   
-    <article id="post-redis-cluster" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/2017/03/29/redis-cluster/">redis-cluster</a>
-    </h1>
   
+    <a href="/blogs/2017/03/29/redis-cluster/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redis-cluster</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="codis"><a href="#codis" class="headerlink" title="codis"></a>codis</h3><p><a href="http://www.cnblogs.com/xuanzhi201111/p/4425194.html">http://www.cnblogs.com/xuanzhi201111/p/4425194.html</a></p>
-<p><a href="http://www.oschina.net/p/codis/">http://www.oschina.net/p/codis/</a></p>
-<p>BSD协议</p>
-<p>原子 – Redis的所有操作都是原子性的，同时Redis还支持对几个操作全并后的原子性执行。</p>
-<p>同时，在磁盘格式方面他们是紧凑的以追加的方式产生的，因为他们并不需要进行随机访问。</p>
-<p>Slaves能过接口其他slave的链接，除了可以接受同一个master下面slaves的链接以外，还可以接受同一个结构图中的其他slaves的链接。？？？？？？</p>
-<p>一致性哈希算法：  <a href="http://blog.csdn.net/sparkliang/article/details/5279393">http://blog.csdn.net/sparkliang/article/details/5279393</a></p>
-<p>Gossip协议</p>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/blogs/2017/03/29/redis-cluster/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/blogs/2017/03/29/redis-cluster/" class="archive-article-date">
-  	<time datetime="2017-03-29T01:14:03.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-29</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/redis/">redis</a></li></ul>
-	</div>
 
-      
 
-      <div class="clearfix"></div>
-    </div>
+
+
+
+<div class="share_addthis share_jia">
+  <div class="sharing addthis_toolbox share">
+  	<span class="jiathis_txt">Share to: &nbsp; </span>
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
   </div>
-</article>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
 
 
 
 
 
-
-
-
-
-
-  
-    <article id="post-全局唯一id生成器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/2017/03/07/全局唯一id生成器/">全局唯一id生成器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>参考文档：<a href="http://www.cnblogs.com/relucent/p/4955340.html">http://www.cnblogs.com/relucent/p/4955340.html</a></p>
-<p>分布式系统中，有一些需要使用全局唯一ID的场景，这种时候为了防止ID冲突可以使用36位的UUID，但是UUID有一些缺点，首先他相对比较长，另外UUID一般是无序的。<br>有些时候我们希望能使用一种简单一些的ID，并且希望ID能够按照时间有序生成。<br>而twitter的snowflake解决了这种需求，最初Twitter把存储系统从MySQL迁移到Cassandra，因为Cassandra没有顺序ID生成机制，所以开发了这样一套全局唯一ID生成服务。</p>
-<h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>snowflake的结构如下(每部分用-分开):<br>0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000<br>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/blogs/2017/03/07/全局唯一id生成器/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/blogs/2017/03/07/全局唯一id生成器/" class="archive-article-date">
-  	<time datetime="2017-03-07T08:51:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-07</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/java/">java</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-linux-常用命令" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/2017/03/01/linux-常用命令/">linux-常用命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="防火墙-firewalld"><a href="#防火墙-firewalld" class="headerlink" title="防火墙(firewalld)"></a>防火墙(firewalld)</h3><p>参考文档：<a href="https://www.zhaokeli.com/Article/6321.html">https://www.zhaokeli.com/Article/6321.html</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//开启80端口</div><div class="line">firewall-cmd --zone=public --add-port=80/tcp --permanent</div><div class="line">//重启防火墙</div><div class="line">systemctl restart firewalld</div><div class="line">//启动</div><div class="line">systemctl start  firewalld</div><div class="line">//查看状态</div><div class="line">systemctl status firewalld</div><div class="line">firewall-cmd --state</div><div class="line">//停止</div><div class="line">systemctl <span class="built_in">disable</span> firewalld</div><div class="line">//禁用</div><div class="line">systemctl stop firewalld</div></pre></td></tr></table></figure>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/blogs/2017/03/01/linux-常用命令/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/blogs/2017/03/01/linux-常用命令/" class="archive-article-date">
-  	<time datetime="2017-03-01T10:04:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-01</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/linux-centos7/">-linux -centos7</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-monogdb-deploy-shard-cluster" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blogs/2017/03/01/monogdb-deploy-shard-cluster/">monogdb-deploy-shard-cluster</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="monogdb-deploy-shard-cluster"><a href="#monogdb-deploy-shard-cluster" class="headerlink" title="monogdb deploy-shard-cluster"></a>monogdb deploy-shard-cluster</h3><p>参考文档: </p>
-<p><a href="https://docs.mongodb.com/master/tutorial/deploy-shard-cluster/">https://docs.mongodb.com/master/tutorial/deploy-shard-cluster/</a></p>
-<p><a href="http://www.tuicool.com/articles/NnEBFb">http://www.tuicool.com/articles/NnEBFb</a></p>
-<p><a href="http://blog.csdn.net/luonanqin/article/details/8497860">http://blog.csdn.net/luonanqin/article/details/8497860</a></p>
-<h3 id="创建配置服务器"><a href="#创建配置服务器" class="headerlink" title="创建配置服务器"></a>创建配置服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bin/mongod <span class="_">-f</span> config/configsvr-0.conf</div><div class="line">bin/mongod <span class="_">-f</span> config/configsvr-1.conf</div><div class="line">bin/mongod <span class="_">-f</span> config/configsvr-2.conf</div></pre></td></tr></table></figure>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/blogs/2017/03/01/monogdb-deploy-shard-cluster/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/blogs/2017/03/01/monogdb-deploy-shard-cluster/" class="archive-article-date">
-  	<time datetime="2017-03-01T01:43:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-03-01</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blogs/tags/mongo/">mongo</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blogs/page/2/">2</a><a class="page-number" href="/blogs/page/3/">3</a><a class="page-number" href="/blogs/page/4/">4</a><a class="extend next" rel="next" href="/blogs/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
       </div>
@@ -439,8 +246,8 @@
 		fancybox: true,
 		mathjax: false,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
