@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/01/linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
+    
+    <lastmod>2017-03-29T03:22:36.252Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/29/zookeeper/</loc>
     
-    <lastmod>2017-03-29T03:20:19.000Z</lastmod>
+    <lastmod>2017-03-29T03:22:19.000Z</lastmod>
     
   </url>
   
@@ -33,13 +40,6 @@
     <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/01/monogdb-deploy-shard-cluster/</loc>
     
     <lastmod>2017-03-02T07:13:17.473Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://nickliuyong.github.io/blogs/blogs/2017/03/01/linux-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</loc>
-    
-    <lastmod>2017-03-02T01:16:29.371Z</lastmod>
     
   </url>
   
